@@ -3,10 +3,10 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
-
+import { ClerkProvider } from "@clerk/nextjs"
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <SessionProvider>
+    <ClerkProvider>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -15,6 +15,6 @@ export function Providers({ children }: { children: ReactNode }) {
       >
         {children}
       </ThemeProvider>
-    </SessionProvider>
+    </ClerkProvider>
   );
 }

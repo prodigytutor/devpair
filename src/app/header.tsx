@@ -26,9 +26,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import { deleteAccountAction } from "./actions";
+import { UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, auth, currentUser, useAuth, useUser  } from "@clerk/nextjs";
 
 function AccountDropdown() {
-  const session = useSession();
+  const { userId, sessionId } = useAuth();
+  const { isSignedIn, user } = useUser();
   const [open, setOpen] = useState(false);
 
   return (
@@ -60,11 +63,11 @@ function AccountDropdown() {
         <DropdownMenuTrigger asChild>
           <Button variant={"link"}>
             <Avatar className="mr-2">
-              <AvatarImage src={session.data?.user?.image ?? ""} />
+              <AvatarImage src={user?.imageUrl ?? ""} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
-            {session.data?.user?.name}
+            {user.username || '???'}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -92,9 +95,7 @@ function AccountDropdown() {
 }
 
 export function Header() {
-  const session = useSession();
-  const isLoggedIn = !!session.data;
-
+  const { isSignedIn, user } = useUser();
   return (
     <header className="bg-gray-100 py-2 dark:bg-gray-900 z-10 relative">
       <div className="container mx-auto flex justify-between items-center">
@@ -112,7 +113,7 @@ export function Header() {
         </Link>
 
         <nav className="flex gap-8">
-          {isLoggedIn && (
+          {isSignedIn && (
             <>
               <Link className="hover:underline" href="/browse">
                 Browse
@@ -126,15 +127,16 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          {isLoggedIn && <AccountDropdown />}
-          {!isLoggedIn && (
-            <Button onClick={() => signIn()} variant="link">
-              <LogInIcon className="mr-2" /> Sign In
-            </Button>
-          )}
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          
           <ModeToggle />
         </div>
       </div>
     </header>
   );
 }
+ /* <Button onClick={() => signIn()} variant="link">
+              <LogInIcon className="mr-2" /> Sign In
+            </Button> */

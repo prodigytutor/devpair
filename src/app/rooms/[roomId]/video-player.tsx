@@ -16,27 +16,28 @@ import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { generateTokenAction } from "./actions";
 import { useRouter } from "next/navigation";
+import { SignedIn, SignedOut, auth, currentUser, useAuth, useUser  } from "@clerk/nextjs";
 
 const apiKey = process.env.NEXT_PUBLIC_GET_STREAM_API_KEY!;
 
 export function DevPairVideo({ room }: { room: Room }) {
-  const session = useSession();
+  const { userId, sessionId } = useAuth();
+  const { isSignedIn, user } = useUser();
   const [client, setClient] = useState<StreamVideoClient | null>(null);
   const [call, setCall] = useState<Call | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     if (!room) return;
-    if (!session.data) {
+    if (!sessionId) {
       return;
     }
-    const userId = session.data.user.id;
     const client = new StreamVideoClient({
       apiKey,
       user: {
         id: userId,
-        name: session.data.user.name ?? undefined,
-        image: session.data.user.image ?? undefined,
+        name: user?.username ?? undefined,
+        image: user?.imageUrl ?? undefined,
       },
       tokenProvider: () => generateTokenAction(),
     });
@@ -51,7 +52,7 @@ export function DevPairVideo({ room }: { room: Room }) {
         .then(() => client.disconnectUser())
         .catch(console.error);
     };
-  }, [session, room]);
+  }, [sessionId, room]);
 
   return (
     client &&
