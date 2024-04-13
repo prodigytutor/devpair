@@ -5,7 +5,7 @@ import Link from "next/link";
 import { DevPairVideo } from "./video-player";
 import { splitTags } from "@/lib/utils";
 import { unstable_noStore } from "next/cache";
-
+import RoomTabs from "../../../components/RoomTabs/RoomTabs";
 export default async function RoomPage(props: { params: { roomId: string } }) {
   unstable_noStore();
   const roomId = props.params.roomId;
@@ -44,6 +44,12 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
 
           <TagsList tags={splitTags(room.tags)} />
         </div>
+      </div>
+      <div className="col-span-4">
+          Room Tabs
+          <RoomTabs />
+
+
       </div>
     </div>
   );
