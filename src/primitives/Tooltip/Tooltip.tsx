@@ -11,7 +11,7 @@ export interface Props
   content: ReactNode;
 }
 
-export const Tooltip = forwardRef<HTMLDivElement, Props>(
+ const Tooltip = forwardRef<HTMLDivElement, Props>(
   (
     {
       children,
@@ -52,3 +52,6 @@ export const Tooltip = forwardRef<HTMLDivElement, Props>(
     );
   }
 );
+Tooltip.displayName = "Tooltip";
+
+export default Tooltip;

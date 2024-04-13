@@ -9,7 +9,7 @@ interface Props {
   iconButton?: boolean;
 }
 
-export const Button = forwardRef<
+const Button = forwardRef<
   HTMLButtonElement,
   ComponentProps<"button"> & Props
 >(
@@ -37,6 +37,9 @@ export const Button = forwardRef<
     </button>
   )
 );
+Button.displayName = "Button";
+export default Button;
+/** LinkButton.tsx */
 
 export function LinkButton({
   variant = "primary",

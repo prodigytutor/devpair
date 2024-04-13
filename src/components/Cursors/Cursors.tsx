@@ -80,7 +80,6 @@ export function Cursors({ element }: Props) {
           if (presence == null || presence.cursor == null) {
             return null;
           }
-
           return (
             <Cursor
               color={info?.color}

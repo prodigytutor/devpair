@@ -6,7 +6,7 @@ interface Props extends ComponentProps<"div"> {
   header: ReactNode;
 }
 
-export const DocumentLayout = forwardRef<HTMLElement, Props>(
+const DocumentLayout = forwardRef<HTMLElement, Props>(
   ({ children, header, className, ...props }, ref) => {
     return (
       <div className={clsx(className, styles.container)} {...props}>
@@ -18,3 +18,6 @@ export const DocumentLayout = forwardRef<HTMLElement, Props>(
     );
   }
 );
+DocumentLayout.displayName = "DocumentLayout";
+
+export default DocumentLayout;

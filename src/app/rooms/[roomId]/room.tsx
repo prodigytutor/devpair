@@ -8,7 +8,7 @@ import { LiveMap } from "@liveblocks/client";
 export function Room({ children, roomId }: { children: ReactNode, roomId: string }) {
   return (
     <RoomProvider id={roomId} 
-    initialPresence={{ cursor: null }}
+    initialPresence={{ cursor: null, selection: [], pencilDraft: null, penColor: null }}
     initialStorage={{ notes: new LiveMap() }}
     >
       <ClientSideSuspense fallback={<div>Loading…</div>}>

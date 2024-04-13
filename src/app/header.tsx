@@ -67,7 +67,7 @@ function AccountDropdown() {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
-            {user.username || '???'}
+            {user?.username || '???'}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
