@@ -27,6 +27,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
+RUN npm install
 RUN npm run build
 
 COPY --from=builder /app/public ./public
