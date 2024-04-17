@@ -9,8 +9,8 @@ RUN npm ci
 
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+SUDO COPY --from=deps /app/node_modules ./node_modules
+SUDO COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
@@ -30,10 +30,10 @@ USER nextjs
 RUN npm install
 RUN npm run build
 
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+SUDO COPY --from=builder /app/public ./public
+SUDO COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+SUDO COPY --from=builder /app/node_modules ./node_modules
+SUDO COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 3000
 
