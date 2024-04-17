@@ -14,8 +14,8 @@ export function DocumentHeaderAvatars() {
   return (
     <AvatarStack
       avatars={users.map((user) => ({
-        name: user.info.name,
-        src: user.info.avatar,
+        name: user.info.name || '',
+        src: user.info.picture,
         color: user.info.color,
       }))}
       max={5}

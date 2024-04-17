@@ -1,4 +1,4 @@
-import { users } from "../../../data/users";
+import { users, allUserIds } from "../../../db/schema";
 import { GetUsersProps, User } from "../../../types";
 import { getUser } from "./getUser";
 
@@ -22,8 +22,9 @@ export async function getUsers({
       usersPromises.push(getUser(userId));
     }
   } else {
-    const allUserIds = users.map((user) => user.id);
-    for (const userId of allUserIds) {
+    //const allUserIds = this.users.map((user: any) => user.id);
+    const UserIds = allUserIds.toString();
+    for (const userId of UserIds) {
       usersPromises.push(getUser(userId));
     }
   }

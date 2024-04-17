@@ -1,7 +1,4 @@
-import {
-  DEFAULT_BASE_URL,
-  SECRET_API_KEY,
-} from "../../../liveblocks.server.config";
+
 import { ErrorData, FetchApiResult } from "../../../types";
 
 /**
@@ -18,7 +15,7 @@ export async function fetchLiveblocksApi<T = unknown>(
   urlEnd: string,
   fetchOptions?: RequestInit
 ): Promise<FetchApiResult<T>> {
-  if (!SECRET_API_KEY) {
+  if (!process.env.LIVEBLOCKS_KEY) {
     return {
       error: {
         code: 403,
@@ -29,12 +26,12 @@ export async function fetchLiveblocksApi<T = unknown>(
     };
   }
 
-  const url = new URL(urlEnd, DEFAULT_BASE_URL).toString();
+  const url = new URL(urlEnd, process.env.NEXTAUTH_URL).toString();
 
   try {
     const response = await fetch(url, {
       headers: new Headers({
-        Authorization: `Bearer ${SECRET_API_KEY}`,
+        Authorization: `Bearer ${process.env.LIVEBLOCKS_KEY}`,
       }),
       ...fetchOptions,
     });

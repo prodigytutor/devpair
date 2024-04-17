@@ -12,7 +12,7 @@ import {
   CustomThreadData,
   useCreateThread,
   useThreads,
-} from "../../liveblocks.config";
+} from "../../../liveblocks.config";
 import {
   getCommentHighlightContent,
   removeCommentHighlight,
@@ -122,7 +122,7 @@ function ThreadComposer({ editor }: Props) {
 
       createThread({
         body,
-        metadata: { resolved: false, highlightId },
+        metadata: { resolved: false, quote: '', time: Date.now(), highlightId },
       });
 
       editor.commands.setCommentHighlight({

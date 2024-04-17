@@ -44,8 +44,8 @@ export function DocumentRow({
 
     const access = getDocumentAccess({
       documentAccesses: accesses,
-      userId: session.user.info.id,
-      groupIds: session.user.info.groupIds,
+      userId: session.user.info.id || '',
+      groupIds: session.user.info.groupIds || [],
     });
     setCurrentUserAccess(access);
   }, [session, accesses]);

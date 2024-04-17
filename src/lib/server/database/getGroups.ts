@@ -1,4 +1,4 @@
-import { groups } from "../../../data/groups";
+import { groups } from "../../../db/schema";
 import { Group } from "../../../types";
 
 /**
@@ -9,5 +9,6 @@ import { Group } from "../../../types";
  * @param ids - The group ids
  */
 export async function getGroups(ids: string[]): Promise<Group[]> {
-  return groups.filter((group) => ids.includes(group.id));
+  return groups.filter((group: Group) => ids.includes(group.id));
+  
 }

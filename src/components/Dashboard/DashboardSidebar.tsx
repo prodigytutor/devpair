@@ -9,7 +9,7 @@ import {
 import { FileIcon, FolderIcon } from "../../icons";
 import { LinkButton } from "../../primitives/Button";
 import { Group } from "../../types";
-import { normalizeTrailingSlash } from "../../utils";
+import { normalizeTrailingSlash } from "../../../utils";
 import styles from "./DashboardSidebar.module.css";
 
 interface Props extends ComponentProps<"div"> {

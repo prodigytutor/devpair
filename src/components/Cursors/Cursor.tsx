@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import { ComponentProps, useMemo } from "react";
-import { getContrastingColor } from "../../utils";
+import { getContrastingColor } from "../../../utils";
 import styles from "./Cursor.module.css";
 
 interface Props extends Omit<ComponentProps<"div">, "color"> {
-  color: string;
-  name: string;
+  color?: string;
+  name?: string;
   x: number;
   y: number;
 }

@@ -8,7 +8,7 @@ import { Button } from "../../primitives/Button";
 import { Select } from "../../primitives/Select";
 import { Spinner } from "../../primitives/Spinner";
 import { Document, DocumentAccess, DocumentGroup, Group } from "../../types";
-import { capitalize } from "../../utils";
+import { capitalize } from "../../../utils";
 import styles from "./ShareDialogInvite.module.css";
 
 interface Props extends ComponentProps<"div"> {

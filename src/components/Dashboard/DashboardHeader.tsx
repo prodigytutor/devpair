@@ -4,7 +4,8 @@ import { signOut, useSession } from "next-auth/react";
 import { ComponentProps, MouseEventHandler } from "react";
 import { CrossIcon, MenuIcon, SignOutIcon } from "../../icons";
 import { Avatar } from "../../primitives/Avatar";
-import { Button } from "../../primitives/Button";
+//import { Button } from "../../primitives/Button";
+import Button from "@/primitives/Button/Button";
 import { Popover } from "../../primitives/Popover";
 import { InboxPopover } from "../../components/Inbox";
 import { Logo } from "../../components/Logo";
@@ -44,7 +45,7 @@ export function DashboardHeader({
               <div className={styles.profilePopover}>
                 <div className={styles.profilePopoverInfo}>
                   <span className={styles.profilePopoverName}>
-                    {session.user.info.name}
+                    {session.user.name}
                   </span>
                   <span className={styles.profilePopoverId}>
                     {session.user.info.id}
@@ -67,7 +68,7 @@ export function DashboardHeader({
             <button className={styles.profileButton}>
               <Avatar
                 className={styles.profileAvatar}
-                name={session.user.info.name}
+                name={session.user.name}
                 size={32}
                 src={session.user.info.avatar}
               />

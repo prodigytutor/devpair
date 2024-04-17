@@ -18,7 +18,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { EditorView } from "prosemirror-view";
 import { useEffect, useState } from "react";
 import * as Y from "yjs";
-import { useRoom, useSelf } from "../../liveblocks.config";
+import { useRoom, useSelf } from "../../../liveblocks.config";
 import { DocumentSpinner } from "../../primitives/Spinner";
 import { LiveblocksCommentsHighlight } from "./comment-highlight";
 import { CustomTaskItem } from "./CustomTaskItem";
@@ -69,7 +69,7 @@ type EditorProps = {
 
 function TiptapEditor({ doc, provider }: EditorProps) {
   // Get user info from Liveblocks authentication endpoint
-  const { name, color, avatar: picture } = useSelf((me) => me.info);
+  const { name, color,  picture: picture } = useSelf((me) => me.info);
 
   // Check if user has write access in current room
   const canWrite = useSelf((me) => me.canWrite);

@@ -3,7 +3,9 @@ import clsx from "clsx";
 import Link from "next/link";
 import { ComponentProps } from "react";
 import { ShareIcon } from "../../icons";
-import { Button } from "../../primitives/Button";
+//import { Button } from "../../primitives/Button";
+//import { Button } from "../../primitives/Button";
+import { Button } from "../ui/button";
 import { Skeleton } from "../../primitives/Skeleton";
 import { InboxPopover } from "../Inbox";
 import { Logo } from "../Logo";
@@ -40,7 +42,7 @@ export function DocumentHeader({
           </ClientSideSuspense>
         </div>
         <ShareDialog>
-          <Button icon={<ShareIcon />}>Share</Button>
+          <Button>Share</Button>
         </ShareDialog>
         <InboxPopover align="end" sideOffset={4} />
       </div>

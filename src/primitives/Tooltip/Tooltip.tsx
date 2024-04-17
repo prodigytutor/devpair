@@ -11,7 +11,7 @@ export interface Props
   content: ReactNode;
 }
 
- const Tooltip = forwardRef<HTMLDivElement, Props>(
+ export  const Tooltip = forwardRef<HTMLDivElement, Props>(
   (
     {
       children,

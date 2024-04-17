@@ -5,6 +5,7 @@ import {
   primaryKey,
   integer,
   uuid,
+  pgView
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 import { sql } from "drizzle-orm";
@@ -14,6 +15,19 @@ export const users = pgTable("user", {
   name: text("name"),
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: text("image"),
+});
+
+export const allUserIds = pgView('all_user_ids').as((qb) => {
+  return qb
+  .select({
+    id: users.id,
+  }).from(users);
+});
+
+export const groups = pgTable("group", {
+  id: text("id").notNull().primaryKey(),
+  name: text("name"),
   image: text("image"),
 });
 

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import { ComponentProps } from "react";
-import { getInitials } from "../../utils";
+import { getInitials } from "../../../utils";
 import { Tooltip } from "../Tooltip";
 import styles from "./Avatar.module.css";
 

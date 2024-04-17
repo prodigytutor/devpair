@@ -18,7 +18,7 @@ import {
   GetDocumentsResponse,
   Group,
 } from "../../types";
-import { capitalize } from "../../utils";
+import { capitalize } from "../../../utils";
 import styles from "./Documents.module.css";
 
 // Load `x` documents at a time
@@ -113,7 +113,7 @@ export function DocumentsLayout({
   const createDocumentButton = (
     <DocumentCreatePopover
       align="end"
-      userId={session.user.info.id}
+      userId={session.user.info.id || 'unknown user id'}
       groupIds={group?.id ? [group.id] : undefined}
       draft={filter === "drafts" || filter === "all"}
       sideOffset={12}

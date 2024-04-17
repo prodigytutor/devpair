@@ -3,11 +3,15 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { AuthOptions, DefaultSession, getServerSession } from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
-
+import { UserMeta } from "../../liveblocks.config"
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
+      info: UserMeta;
+      name: string;
+      email: string;
+      image: string;
     } & DefaultSession["user"];
   }
 }

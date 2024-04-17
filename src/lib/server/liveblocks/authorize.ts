@@ -1,4 +1,4 @@
-import { UserInfo } from "../../../liveblocks.config";
+import { UserInfo } from "../../../../liveblocks.config";
 import { FetchApiResult, Room } from "../../../types";
 import { fetchLiveblocksApi } from "../utils";
 

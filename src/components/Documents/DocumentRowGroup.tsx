@@ -9,7 +9,7 @@ type Props = {
   revalidateDocuments: () => void;
 };
 
- const DocumentRowGroup = memo(
+export const DocumentRowGroup = memo(
   ({ documents, revalidateDocuments }: Props) => {
     const documentIds = documents.map((doc) => doc.id);
 

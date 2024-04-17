@@ -1,4 +1,4 @@
-import { UserInfo } from "../liveblocks.config";
+import { UserInfo } from "../../liveblocks.config";
 import { DocumentRoomMetadata } from "./document";
 
 /**

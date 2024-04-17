@@ -25,7 +25,7 @@ import {
 import { Button } from "../../primitives/Button";
 import { DocumentSpinner } from "../../primitives/Spinner";
 import { Tooltip } from "../../primitives/Tooltip";
-import { useBoundingClientRectRef } from "../../utils";
+import { useBoundingClientRectRef } from "../../../utils";
 import { Cursors } from "../Cursors";
 import { WhiteboardNote } from "./WhiteboardNote";
 import styles from "./Whiteboard.module.css";

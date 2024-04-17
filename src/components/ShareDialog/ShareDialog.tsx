@@ -19,7 +19,7 @@ import { ShareDialogDefault } from "./ShareDialogDefault";
 import { ShareDialogGroups } from "./ShareDialogGroups";
 import { ShareDialogInviteGroup } from "./ShareDialogInviteGroup";
 import { ShareDialogInviteUser } from "./ShareDialogInviteUser";
-import { ShareDialogUsers } from "./ShareDialogUsers";
+import { ShareDialogUsers } from "./ShareDialogUsers";  
 import styles from "./ShareDialog.module.css";
 
 type Props = Omit<ComponentProps<typeof Dialog>, "content" | "title">;
@@ -78,8 +78,8 @@ export function ShareDialog({ children, ...props }: Props) {
 
     const accessLevel = getDocumentAccess({
       documentAccesses: document.accesses,
-      userId: session.user?.info.id,
-      groupIds: session.user?.info.groupIds,
+      userId: session.user?.info.id ||'',
+      groupIds: session.user?.info.groupIds || [],
     });
 
     // Reload if current user has no access (will show error page)
@@ -119,9 +119,9 @@ export function ShareDialog({ children, ...props }: Props) {
 
   // If a share dialog update has been received, refresh data
   useEventListener(({ event }) => {
-    if (event.type === "SHARE_DIALOG_UPDATE") {
+    //if (event.type === "SHARE_DIALOG_UPDATE") {
       revalidateAll();
-    }
+    //}
   });
 
   return (
@@ -150,7 +150,7 @@ export function ShareDialog({ children, ...props }: Props) {
                 fullAccess={currentUserAccess === DocumentAccess.FULL}
                 onSetUsers={() => {
                   revalidateAll();
-                  broadcast({ type: "SHARE_DIALOG_UPDATE" });
+                  //broadcast({ type: "SHARE_DIALOG_UPDATE" });
                 }}
               />
               {users?.length ? (
@@ -161,7 +161,7 @@ export function ShareDialog({ children, ...props }: Props) {
                   fullAccess={currentUserAccess === DocumentAccess.FULL}
                   onSetUsers={() => {
                     revalidateAll();
-                    broadcast({ type: "SHARE_DIALOG_UPDATE" });
+                    //broadcast({ type: "SHARE_DIALOG_UPDATE" });
                   }}
                   users={users}
                 />
@@ -175,7 +175,7 @@ export function ShareDialog({ children, ...props }: Props) {
                 currentGroups={groups || []}
                 onSetGroups={() => {
                   revalidateAll();
-                  broadcast({ type: "SHARE_DIALOG_UPDATE" });
+                 // broadcast({ type: "SHARE_DIALOG_UPDATE" });
                 }}
               />
               {groups?.length ? (
@@ -186,7 +186,7 @@ export function ShareDialog({ children, ...props }: Props) {
                   groups={groups}
                   onSetGroups={() => {
                     revalidateAll();
-                    broadcast({ type: "SHARE_DIALOG_UPDATE" });
+                  //  broadcast({ type: "SHARE_DIALOG_UPDATE" });
                   }}
                 />
               ) : null}
@@ -199,7 +199,7 @@ export function ShareDialog({ children, ...props }: Props) {
             fullAccess={currentUserAccess === DocumentAccess.FULL}
             onSetDefaultAccess={() => {
               revalidateAll();
-              broadcast({ type: "SHARE_DIALOG_UPDATE" });
+             // broadcast({ type: "SHARE_DIALOG_UPDATE" });
             }}
           />
         </div>

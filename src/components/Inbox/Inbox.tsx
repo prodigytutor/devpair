@@ -13,7 +13,7 @@ import { Button } from "../../primitives/Button";
 import { Link } from "../../primitives/Link";
 import { Spinner } from "../../primitives/Spinner";
 import styles from "./Inbox.module.css";
-v 
+
 function InboxContent(props: ComponentProps<"div">) {
   const { inboxNotifications } = useInboxNotifications();
 

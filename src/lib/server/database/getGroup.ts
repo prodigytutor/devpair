@@ -1,6 +1,6 @@
-import { groups } from "../../../data/groups";
+import { groups } from "../../../db/schema";
 import { Group } from "../../../types";
-
+import { db } from "../../../db";
 /**
  * Get Group
  *
@@ -9,5 +9,8 @@ import { Group } from "../../../types";
  * @param id - The group's id
  */
 export async function getGroup(id: string): Promise<Group | null> {
-  return groups.find((group) => group.id === id) ?? null;
+  return db.query.groups.findMany({ where: { id } })
+  
+  //groups.find((group) => group.id === id) ?? null;
+}
 }

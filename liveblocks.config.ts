@@ -1,7 +1,7 @@
-import { createClient, Json } from "@liveblocks/client";
+import { createClient, Json, LiveMap, LiveObject, ThreadData, User } from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
 import { Layer, Color } from "./src/types/canvas"
-
+import { User } from "./types";
 
 const client = createClient({
   publicApiKey: "pk_dev_DjX1XmEyyWUB1dtI_ZiX0r5dtMFsWvJ_d8pF_iBpOEENNgmoHlENfUMWMyykcCDE",
@@ -64,37 +64,58 @@ type Presence = {
 // Room, even after all users leave. Fields under Storage typically are
 // LiveList, LiveMap, LiveObject instances, for which updates are
 // automatically persisted and synced to all connected clients.
+
+export type Note = LiveObject<{
+  x: number;
+  y: number;
+  text: string;
+  selectedBy: UserMeta["info"] | null;
+  id: string;
+}>;
+
+export type Notes = LiveMap<string, Note>;
+
+// Optionally, Storage represents the shared document that persists in the
+// Room, even after all Users leave. Fields under Storage typically are
+// LiveList, LiveMap, LiveObject instances, for which updates are
+// automatically persisted and synced to all connected clients.
 type Storage = {
-  // author: LiveObject<{ firstName: string, lastName: string }>,
-  // ...
+  notes: Notes;
 };
+
+export type UserInfo = Pick<User, "name" | "avatar" | "color">;
 
 // Optionally, UserMeta represents static/readonly metadata on each user, as
 // provided by your own custom auth back end (if used). Useful for data that
 // will not change during a session, like a user's name or avatar.
-type UserMeta = {
+export type UserMeta = {
   id?: string,
-  info?: {
+  avatar: string;
+  info: {
     name?: string;
     picture?: string;
     color?: string;
   },
+  groupIds?: string[];
+  // ...
 };
 
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
 type RoomEvent = {
-  // type: "NOTIFICATION",
+  type: "NOTIFICATION",
   // ...
 };
 
 // Optionally, when using Comments, ThreadMetadata represents metadata on
 // each thread. Can only contain booleans, strings, and numbers.
 export type ThreadMetadata = {
-  // resolved: boolean;
-  // quote: string;
-  // time: number;
+  resolved: boolean;
+  quote: string;
+  time: number;
+  highlightId: string;
 };
+export type CustomThreadData = ThreadData<ThreadMetadata>;
 
 // Room-level hooks, use inside `RoomProvider`
 export const {

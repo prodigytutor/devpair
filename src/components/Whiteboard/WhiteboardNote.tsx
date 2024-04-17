@@ -30,7 +30,7 @@ interface Props
   onPointerDown: PointerEventHandler<HTMLDivElement>;
 }
 
-const WhiteboardNote = memo(
+export const WhiteboardNote = memo(
   ({
     id,
     dragged,

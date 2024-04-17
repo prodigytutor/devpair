@@ -1,6 +1,7 @@
 import type { GetServerSidePropsContext } from "next";
 import { getServerSession as getNextAuthServerSession } from "next-auth/next";
-import { authOptions } from "../../../pages/api/auth/[...nextauth]";
+import { authOptions } from "../../../app/api/auth/[...nextauth]"
+"../../app/api/auth/[...nextauth].ts"
 
 export function getServerSession(
   req: GetServerSidePropsContext["req"],
