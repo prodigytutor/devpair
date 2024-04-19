@@ -30,7 +30,7 @@ ERROR: User "${userId}" was not found.
 Check that you've added the user to data/users.ts, for example:
 {
   id: "${userId}",
-  name: "Tchoka Ahoki",
+  name: "David Parker",
   avatar: "https://liveblocks.io/avatars/avatar-7.png",
   groupIds: ["product", "engineering", "design"],
 },
