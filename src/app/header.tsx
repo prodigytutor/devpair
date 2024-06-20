@@ -26,8 +26,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import { deleteAccountAction } from "./actions";
-import { UserButton } from "@clerk/nextjs";
-import { SignedIn, SignedOut, auth, currentUser, useAuth, useUser  } from "@clerk/nextjs";
+import { UserButton, SignInButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth, useUser  } from "@clerk/nextjs";
 
 function AccountDropdown() {
   const { userId, sessionId } = useAuth();
@@ -127,9 +127,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          
+        <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+         
           
           <ModeToggle />
         </div>

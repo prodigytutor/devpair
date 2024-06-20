@@ -5,17 +5,17 @@ import { Room } from "@/db/schema";
 import { getSession } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
+import { auth } from "@clerk/nextjs/server";
 export async function editRoomAction(roomData: Omit<Room, "userId">) {
-  const session = await getSession();
+  const userId = auth();
 
-  if (!session) {
+  if (!userId) {
     throw new Error("you must be logged in to create this room");
   }
 
   const room = await getRoom(roomData.id);
 
-  if (room?.userId !== session.user.id) {
+  if (room?.userId !== userId.userId) {
     throw new Error("User not authorized");
   }
 

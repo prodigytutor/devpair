@@ -15,11 +15,12 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
   if (!room) {
     return <div>No room of this ID found</div>;
   }
-
+console.log("room", room)
   return (
     <div className="grid grid-cols-4 min-h-screen">
       <div className="col-span-3 p-4 pr-2">
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4 min-h-screen">
+          video should be here
           <DevPairVideo room={room} />
         </div>
       </div>
@@ -45,12 +46,12 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
           <TagsList tags={splitTags(room.tags)} />
         </div>
       </div>
-      <div className="col-span-4">
+      {/* <div className="col-span-4">
           Room Tabs
           <RoomTabs />
 
 
-      </div>
+      </div> */}
     </div>
   );
 }

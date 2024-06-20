@@ -2,7 +2,8 @@ import { db } from "@/db";
 import { Room, room } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { like } from "drizzle-orm";
-import { getSession } from "@/lib/auth";
+import { auth } from "@clerk/nextjs/server";
+
 
 export async function getRooms(search: string | undefined) {
   const where = search ? like(room.tags, `%${search}%`) : undefined;
@@ -13,12 +14,12 @@ export async function getRooms(search: string | undefined) {
 }
 
 export async function getUserRooms() {
-  const session = await getSession();
-  if (!session) {
+  const { userId } = auth();
+  if (!userId) {
     throw new Error("User not authenticated");
   }
   const rooms = await db.query.room.findMany({
-    where: eq(room.userId, session.user.id),
+    where: eq(room.userId, userId),
   });
 
   return rooms;

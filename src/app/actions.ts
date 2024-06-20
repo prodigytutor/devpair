@@ -1,14 +1,14 @@
 "use server";
 
 import { deleteUser } from "@/data-access/users";
-import { getSession } from "@/lib/auth";
+import { auth } from "@clerk/nextjs/server";
 
 export async function deleteAccountAction() {
-  const session = await getSession();
+  const userId = auth();
 
-  if (!session) {
+  if (!userId) {
     throw new Error("you must be logged in to delete your account");
   }
 
-  await deleteUser(session.user.id);
+  await deleteUser(userId);
 }

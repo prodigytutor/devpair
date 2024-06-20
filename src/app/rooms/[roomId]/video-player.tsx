@@ -26,7 +26,7 @@ export function DevPairVideo({ room }: { room: Room }) {
   const [client, setClient] = useState<StreamVideoClient | null>(null);
   const [call, setCall] = useState<Call | null>(null);
   const router = useRouter();
-
+  console.log("in here", user)
   useEffect(() => {
     if (!room) return;
     if (!sessionId) {

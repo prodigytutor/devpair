@@ -10,19 +10,20 @@ import { Popover } from "../../primitives/Popover";
 import { InboxPopover } from "../../components/Inbox";
 import { Logo } from "../../components/Logo";
 import styles from "./DashboardHeader.module.css";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 interface Props extends ComponentProps<"header"> {
   isOpen: boolean;
   onMenuClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function DashboardHeader({
+export async function DashboardHeader({
   isOpen,
   onMenuClick,
   className,
   ...props
 }: Props) {
-  const { data: session } = useSession();
+  const user = await currentUser();
 
   return (
     <header className={clsx(className, styles.header)} {...props}>
@@ -37,7 +38,7 @@ export function DashboardHeader({
         </Link>
       </div>
       <div className={styles.profile}>
-        {session && (
+        {user && (
           <Popover
             align="end"
             alignOffset={-6}
@@ -45,10 +46,10 @@ export function DashboardHeader({
               <div className={styles.profilePopover}>
                 <div className={styles.profilePopoverInfo}>
                   <span className={styles.profilePopoverName}>
-                    {session.user.name}
+                    {user.username}
                   </span>
                   <span className={styles.profilePopoverId}>
-                    {session.user.info.id}
+                    {user.id}
                   </span>
                 </div>
                 <div className={styles.profilePopoverActions}>
@@ -68,9 +69,9 @@ export function DashboardHeader({
             <button className={styles.profileButton}>
               <Avatar
                 className={styles.profileAvatar}
-                name={session.user.name}
+                name={user.username}
                 size={32}
-                src={session.user.info.avatar}
+                src={user.imageUrl}
               />
             </button>
           </Popover>
