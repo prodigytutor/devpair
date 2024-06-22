@@ -1,5 +1,5 @@
 import { Liveblocks } from "@liveblocks/node";
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 const liveblocks = new Liveblocks({
   secret: process.env.LIVEBLOCKS_KEY || '',
